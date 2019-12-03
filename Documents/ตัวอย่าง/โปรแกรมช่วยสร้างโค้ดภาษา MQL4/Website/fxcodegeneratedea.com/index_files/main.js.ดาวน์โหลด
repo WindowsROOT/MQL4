@@ -1,0 +1,130 @@
+$(document).ready(function(){
+   // isTouchDevice();
+   initGetCall();
+   // initCustomForms();
+    initVideo();
+    initContactPage();
+   initOpenLanguage();
+   liveChat();
+});
+
+$(window).scroll(function(){
+    var _nav = $('#nav');
+	var _offsetM = 159;
+    if (!isTouchDevice()){
+    	if ($(window).scrollTop()>_offsetM){
+	    _nav.addClass('sticky');
+	} else {
+            if (_nav.hasClass('sticky')){
+		_nav.removeClass('sticky');
+	    }
+	}
+    }
+});
+
+function initContactPage(){
+    var contactTab = $("#contact-tab");
+    if (contactTab.length != 0) {
+        contactTab.tabs();
+    }
+}
+function isTouchDevice() {
+  //do not use for Apple devices
+  if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))  || (navigator.userAgent.match(/iPad/i))) {
+    return false;
+  }
+  try {
+    return (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) || navigator.userAgent.indexOf('IEMobile') != -1;
+  } catch (e) {
+    return false;
+  }
+}
+function initGetCall() {
+    $('.call-me-back-button').click(function(){
+        var lang = $(this).attr('rel');
+        $.fancybox({
+         'width'   : 500,
+         'height'  : 650,
+         'autoScale'  : false,
+         'speedIn'  : 200,
+         'speedOut'  : 200,
+         'transitionIn' : 'elastic',
+         'transitionOut' : 'elastic',
+         'type'   : 'iframe',
+         'href'   : 'https://direct.fxpro.com/support/callback/?lang='+lang+'&embed=true',
+         'hideOnOverlayClick' : false
+        });
+        return false;
+    });
+}
+function initVideo(){
+    var link = $('.video');
+    if(link.size()!=0)link.fancybox({
+        'autoScale'         : true,
+        'transitionIn'      : 'none',
+        'transitionOut'     : 'none',
+        'type'              : 'iframe',
+        openEffect  : 'none',
+        closeEffect : 'none'
+    });
+}
+function initOpenLanguage(){
+    var link = $('#language a');
+    var popup = $('.language-global-menu');
+    var closeLink = popup.find('.btn-div-close');
+    link.bind('click', function(){
+        popup.slideDown();
+
+		$(document).bind('click.langSwitcher', function(e) {
+			if ( $(e.target).closest('.language-global-menu').length == 0) {
+				popup.slideUp();
+				$(document).unbind('click.langSwitcher');
+			}
+		});
+		return false;
+
+    })
+    closeLink.bind('click', function(){
+        popup.slideUp();
+        return false;
+    })
+
+}
+
+
+function liveChat() {
+    var chat = $('.js-livechatinc');
+    if (chat) {
+        try {
+            var funcStr = chat[0].onclick.toString();
+            var startIndex = funcStr.indexOf('groups=');
+            if (startIndex > 0) {
+                var endIndex = funcStr.indexOf('\'', startIndex);
+                var groupNumber = funcStr.substring(startIndex + 7, endIndex);
+
+                if (groupNumber != '4') {
+                    $.get('/umbraco/surface/LiveChat/IsChannelOnline?channelId=' + groupNumber, function (result) {
+
+                        if (!result) {
+                            $('.js-livechatinc').attr('onclick', "window.open('https://secure.livechatinc.com/licence/8811641/open_chat.cgi?lang=en&groups=4', 'Chat_8811641', 'width=530,height=520,resizable=yes,scrollbars=no'); return false;");
+                        }
+                    });
+                }
+            }
+
+        } catch (e) { }
+    }
+
+    window.__lc = window.__lc || {};
+    window.__lc.license = 8811641;
+
+    window.__lc.params = [
+    { name: 'UrlReferrer', value: window.location.href }
+    ];  
+
+    (function() {
+    var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+    lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+    })();  
+}
