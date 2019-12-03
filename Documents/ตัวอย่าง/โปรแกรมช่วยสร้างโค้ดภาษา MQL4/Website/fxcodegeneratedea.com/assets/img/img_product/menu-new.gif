@@ -1,0 +1,174 @@
+
+  <html>
+    <head>
+      <title>Cholthida Place Internet Gateway</title>
+        <meta http-equiv="Cache-control" content="no-cache">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="admin/templates/default/css/system.css" type="text/css" />		
+		<style type="text/css">
+		#topbar {
+			font-family: Tahoma;
+			position: absolute;
+			top: 40px;
+			left: 0px;
+			width: 310px;
+		}
+		.style1 {color: #FF0000;
+		font-weight: bold;
+		font-size: 16px;
+		}
+		.style3 {
+			color: #FFFFFF;
+			font-weight: bold;
+			font-size: 14px;
+			}
+			.style2 {
+			color: #000000;
+			font-weight: bold;
+			font-size: 16px;
+			}
+		body {										//เพิ่ม
+			background: #000000;		//เพิ่ม
+		}													//เพิ่ม
+		</style>
+		<script language="JavaScript">
+			var blur = 0;
+			var starttime = new Date();
+			var startclock = starttime.getTime();
+			var mytimeleft = 0;
+		
+			function doTime() {
+			  window.setTimeout( "doTime()", 1000 );
+			  t = new Date();
+			  time = Math.round((t.getTime() - starttime.getTime())/1000);
+			  if (mytimeleft) {
+				time = mytimeleft - time;
+				if (time <= 0) {
+				  window.location = "hotspotlogin.php?res=popup3&uamip=192.168.182.1&uamport=3990";
+				}
+			  }
+			  if (time < 0) time = 0;
+			  hours = (time - (time % 3600)) / 3600;
+			  time = time - (hours * 3600);
+			  mins = (time - (time % 60)) / 60;
+			  secs = time - (mins * 60);
+			  if (hours < 10) hours = "0" + hours;
+			  if (mins < 10) mins = "0" + mins;
+			  if (secs < 10) secs = "0" + secs;
+			  title = "Online time: " + hours + ":" + mins + ":" + secs;
+			  if (mytimeleft) {
+				title = "Remaining time: " + hours + ":" + mins + ":" + secs;
+			  }
+			  if(document.all || document.getElementById){
+				 document.title = title;
+			  }
+			  else {   
+				self.status = title;
+			  }
+			}
+		
+			function popUp(URL) {
+			  if (self.name != "chillispot_popup") {
+				chillispot_popup = window.open(URL, 'chillispot_popup', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=150,height=140');
+			  }
+			}
+		
+			function doOnLoad(result, URL, userurl, redirurl, timeleft) {
+			  if (timeleft) {
+				mytimeleft = timeleft;
+			  }
+			  if ((result == 1) && (self.name == "chillispot_popup")) {
+				doTime();
+			  }
+			  if ((result == 1) && (self.name != "chillispot_popup")) {
+				chillispot_popup = window.open(URL, 'chillispot_popup', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=450,height=363');		//ตั้งค่าหน้าต่าง popup
+			  }
+			  if ((result == 2) || result == 5) {
+				document.form1.UserName.focus()
+			  }
+			  if ((result == 2) && (self.name != "chillispot_popup")) {
+				// chillispot_popup = window.open('', 'chillispot_popup', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=400,height=200');
+				// chillispot_popup.close();
+			  }
+			  if ((result == 12) && (self.name == "chillispot_popup")) {
+				doTime();
+				if (redirurl) {
+				  opener.location = redirurl;
+				}
+				else if (opener.home) {
+				  opener.home();
+				}
+				else {
+				  opener.location = userurl;
+				}
+				self.focus();
+				blur = 0;
+			  }
+			  if ((result == 13) && (self.name == "chillispot_popup")) {
+				self.focus();
+				blur = 1;
+			  }
+			}
+		
+			function doOnBlur(result) {
+			  if ((result == 12) && (self.name == "chillispot_popup")) {
+				if (blur == 0) {
+				  blur = 1;
+				  self.focus();
+				}
+			  }
+			}
+			
+		</script>
+
+		 </head>
+  <body onLoad="javascript:doOnLoad(5, '?res=popup2&uamip=192.168.182.1&uamport=3990&userurl=http://www.msftncsi.com/ncsi.txt&redirurl=&timeleft=','http://www.msftncsi.com/ncsi.txt', '', '')" onBlur = "javascript:doOnBlur(5)">
+  	<div id="wraper">
+  		<div id="maincontent"><span class="style1"><a href="http://192.168.182.1/anti.bat">autinetcutxp |</a><a href="http://192.168.182.1/arpfreeze.zip">antinetcutwin7 |</a><a href="http://192.168.182.1/anti.mht">วิธีใช้ |</a><a href="http://192.168.182.1/user">จัดการข้อมูลส่วนตัว</a></span>
+			<div id="loginform">
+		
+ <div id="message">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style1">PANIRAT MANSION & CHOLTHIDA PLACE</span> </div>
+  <FORM name="form1" METHOD="get" action="hotspotlogin.php?">
+          <INPUT TYPE="HIDDEN" NAME="chal" VALUE="fd611a837866069de8cde0c8797c64c6">
+          <INPUT TYPE="HIDDEN" NAME="uamip" VALUE="192.168.182.1">
+          <INPUT TYPE="HIDDEN" NAME="uamport" VALUE="3990">
+          <INPUT TYPE="HIDDEN" NAME="userurl" VALUE="http://www.msftncsi.com/ncsi.txt">
+		  <INPUT TYPE="HIDDEN" NAME="mac" VALUE="28-E3-47-E7-45-24">
+          <input type="HIDDEN" NAME="login" value="login">
+		<table width="1024" border="0">
+	 <tr>
+	 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><span class="style3">USERNAME :</span></td>
+    <td><input type="text" name="UserName" class="inputbox"></td>
+    <td rowspan="3"><a href="http://192.168.182.1/admin/register.php"><img src="images/regis.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+  </tr>
+  <tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><span class="style3">PASSWORD : </span></td>
+    <td><input type="password" name="Password"  class="inputbox"></td>
+  </tr>
+  <tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><input type="submit" name="button" value="login" class="button"></td>
+  </tr>
+</table>
+      </form>
+					<div class="clear"></div>
+				</div>
+		     	<div id="footer" align="center"><span class="style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Netมีปัญหากรุณาแจ้งห้องและที่อยู่ที่ info:0800338849                                                                                                                                                                                                                                                                                                                                                            </span></div>
+			</div>
+			</div>
+		</body>
+		</html>
+		
